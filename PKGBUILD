@@ -8,7 +8,7 @@ pkgname=gtk2
 pkgver=2.24.31
 pkgrel=3
 pkgdesc="GObject-based multi-platform GUI toolkit (legacy)"
-arch=(i686 x86_64)
+arch=(x86_64)
 url="http://www.gtk.org/"
 depends=('atk' 'pango' 'libxcursor' 'libxinerama' 'libxrandr' 'libxi' 'libxcomposite' 'libxdamage'
          'shared-mime-info' 'cairo' 'gtk-update-icon-cache' 'librsvg' 'desktop-file-utils')
