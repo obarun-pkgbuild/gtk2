@@ -5,11 +5,11 @@
 # 						Maintainer: Jan de Groot <jgc@archlinux.org>
 
 pkgname=gtk2
-pkgver=2.24.31
-pkgrel=3
+pkgver=2.24.32
+pkgrel=2
 pkgdesc="GObject-based multi-platform GUI toolkit (legacy)"
 arch=(x86_64)
-url="http://www.gtk.org/"
+url="https://www.gtk.org/"
 depends=('atk' 'pango' 'libxcursor' 'libxinerama' 'libxrandr' 'libxi' 'libxcomposite' 'libxdamage'
          'shared-mime-info' 'cairo' 'gtk-update-icon-cache' 'librsvg' 'desktop-file-utils')
 makedepends=(gobject-introspection python2 git gtk-doc)
@@ -17,9 +17,9 @@ optdepends=('gnome-themes-standard: Default widget theme'
             'adwaita-icon-theme: Default icon theme')
 license=(LGPL)
 install=gtk2.install
-_commit=09c0b9c8a0f3dad599c179829ffb3a2e81f6efde
+_commit=ed7d3e25f8b6debae6ccc8b50d1329155338cab8 # tags/2.24.32^0
 #Fixme: If arch breaks gtk2, Replace commit with tree from upstream
-source=("git://git.gnome.org/gtk+#commit=$_commit"
+source=("git+https://git.gnome.org/browse/gtk+#commit=$_commit"
         gtkrc
         gtk-query-immodules-2.0.hook
         xid-collision-debug.patch)
@@ -66,7 +66,6 @@ package() {
     install -Dm644 ../gtk-query-immodules-2.0.hook "$pkgdir/usr/share/libalpm/hooks/gtk-query-immodules-2.0.hook"
 
     rm "$pkgdir/usr/bin/gtk-update-icon-cache"
-    rm -r "$pkgdir/usr/share/gtk-doc"
 }
 
 # vim:set et sw=4:
