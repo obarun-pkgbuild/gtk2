@@ -19,7 +19,7 @@ license=(LGPL)
 install=gtk2.install
 _commit=ed7d3e25f8b6debae6ccc8b50d1329155338cab8 # tags/2.24.32^0
 #Fixme: If arch breaks gtk2, Replace commit with tree from upstream
-source=("git+https://git.gnome.org/browse/gtk+#commit=$_commit"
+source=("git+https://gitlab.gnome.org/GNOME/gtk.git#commit=$_commit"
         gtkrc
         gtk-query-immodules-2.0.hook
         xid-collision-debug.patch)
@@ -31,19 +31,19 @@ sha256sums=('SKIP'
 validpgpkeys=('EE62628C5670B472C1529563D4CA511F0375F9B2') # Danial Spruce
 
 pkgver() {
-  cd gtk+
+  cd gtk
   git describe --tags | sed 's/-/+/g'
 }
 
 prepare() {
-    cd gtk+
+    cd gtk
     patch -Np1 -i ../xid-collision-debug.patch
     sed -i '1s/python$/&2/' gtk/gtk-builder-convert
     NOCONFIGURE=1 ./autogen.sh
 }
 
 build() {
-    cd gtk+
+    cd gtk
 
     CXX=/bin/false ./configure --prefix=/usr \
         --sysconfdir=/etc \
@@ -59,7 +59,7 @@ build() {
 }
 
 package() {
-    cd gtk+
+    cd gtk
     make DESTDIR="$pkgdir" install
 
     install -Dm644 ../gtkrc "$pkgdir/usr/share/gtk-2.0/gtkrc"
